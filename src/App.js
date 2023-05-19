@@ -4,19 +4,23 @@ import React from 'react';
 import MovieCard from "./MovieCard";
 import SearchIcon from "./search.svg";
 
-// const API_URL = "https://www.ombdapi.com?apikey=ea75e6ff"
-const API_URL = 'http://localhost:3000/http://www.omdbapi.com/?i=tt3896198&apikey=ea75e6ff';
+// const API_URL = 'http://localhost:3000/http://www.omdbapi.com/?i=tt3896198&apikey=ea75e6ff';
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [movies, setMovies] = useState([]);
 
   const searchMovies = async (title) => {
+    const API_URL = "http://www.omdbapi.com/?i=tt3896198&apikey=2d499238"
     const response = await fetch(`${API_URL}&s=${title}`);
-    const data = response.json();
+    // const data = response.json();1
+    // const API_URL = "https://jsonplaceholder.typicode.com/todos/1"
+    // const response = await fetch(API_URL)
+    const data = await response.json()
     console.log(data)
-    data.then((res) => {
-        setMovies(res.Search);
-    });
+    setMovies(data.Search);
+    // data.then((res) => {
+        // setMovies(res.Search);
+    // });
 }
 
 useEffect(() => {
